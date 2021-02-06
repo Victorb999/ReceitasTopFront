@@ -10,7 +10,14 @@
   }
   h1{
     font-weight: bold;
-    font-size: 48px;
+    font-size: 3em;
     line-height: 60px;
+  }
+}
+@media (max-width: $layout-breakpoint-small){
+  h1{
+    font-weight: bold !important;
+    font-size: 2em !important;
+    line-height: 150% !important;
   }
 }

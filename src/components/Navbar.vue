@@ -55,6 +55,10 @@ export default defineComponent({
       small: false
     }) as Nav;
 
+    if (window.innerWidth < 500) {
+      state.small = true;
+    }
+
     return { state };
   }
 });

@@ -1,0 +1,13 @@
+@import 'base/variables';
+@import 'base/reset';
+@import 'base/texts';
+
+
+@import 'components/navbar';
+
+.all{
+  display: flex;
+}
+.principal{
+  background-color: $white;
+}

@@ -1,0 +1,23 @@
+.btn-adjust{
+  position: absolute ;
+  top: 1%;
+  right: 2%;
+  width: $s36;
+  height: $s36;
+  vertical-align: middle;
+  padding: $s6;
+  font-size: 0.85em;
+  border: none;
+  border-radius: 50%;
+  background: $white;
+  color: $dark;
+  z-index: 2048;
+}
+.btn-adjust:hover{
+  background-color: $dark;
+  color: $white;
+}
+.btn-adjust:active,.btn-adjust:focus{
+  border: none;
+  outline:none;
+}

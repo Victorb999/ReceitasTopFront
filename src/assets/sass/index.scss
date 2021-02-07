@@ -1,6 +1,7 @@
 @import 'base/variables';
 @import 'base/reset';
 @import 'base/texts';
+@import 'base/buttons';
 
 
 @import 'components/navbar';
@@ -10,7 +11,10 @@
   display: flex;
 }
 .principal{
-  background-color: $white;
   padding: $s36;
   display: flex;
+}
+.theme-dark{
+  background-color: $dark;
+  color: $white
 }

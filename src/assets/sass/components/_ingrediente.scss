@@ -1,0 +1,45 @@
+#ingrediente {
+  display: block;
+  .row{
+    margin-top: $s24;
+  }
+  .container-ingrediente {
+    font-family: $font-2;
+    background-color: $pink-0;
+    color: $red-2;
+    border-radius: 5px;
+    padding: $s12;
+    display: flexbox;
+    .title-ingrediente {
+      font-weight: 900;
+      font-size: 36px;
+      line-height: 65px;
+      background-color: $pastel;
+      border-radius: 50%;
+      width: 70px;
+      min-height: 60px;
+      text-align: center;
+      margin-bottom: $s18;
+      align-self: center;
+    }
+    &:hover {
+      background-color: $pink-1;
+      cursor: pointer;
+    }
+    h1 {
+      text-align: center;
+      font-style: normal;
+      font-weight: bold;
+      font-size: 16px;
+      line-height: 22px;
+      text-transform: lowercase;
+    }
+    p {
+      font-style: normal;
+      font-weight: 300;
+      font-size: 12px;
+      line-height: 12px;
+      margin-bottom: $s6;
+    }
+  }
+}

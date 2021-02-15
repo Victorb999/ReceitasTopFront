@@ -1,15 +1,16 @@
 #ingrediente {
   display: block;
-  .row{
-    margin-top: $s24;
-  }
   .container-ingrediente {
+    margin-top: $s24;
     font-family: $font-2;
     background-color: $pink-0;
     color: $red-2;
     border-radius: 5px;
     padding: $s12;
-    display: flexbox;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap; // Quebra a linha
+    flex-direction: row; //Direção que você deseja
     .title-ingrediente {
       font-weight: 900;
       font-size: 36px;
@@ -20,11 +21,18 @@
       min-height: 60px;
       text-align: center;
       margin-bottom: $s18;
-      align-self: center;
+      align-self: center;    
     }
     &:hover {
       background-color: $pink-1;
       cursor: pointer;
+      .title-ingrediente{
+        background-color: lighten($pastel,5%);
+      }
+    }
+    .text-ingrediente{
+      display: block;
+      width: 100%;
     }
     h1 {
       text-align: center;
@@ -41,5 +49,21 @@
       line-height: 12px;
       margin-bottom: $s6;
     }
+  }
+}
+
+.theme-dark {
+  #ingrediente {
+    .container-ingrediente {
+      background-color: $vinho;
+      color: white;
+      .title-ingrediente {
+        background-color: $red;
+        color: $pink-0;
+      }
+      &:hover{
+        background-color: darken($vinho,10%);
+      }
+    }    
   }
 }

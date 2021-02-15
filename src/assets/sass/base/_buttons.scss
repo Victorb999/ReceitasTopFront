@@ -1,5 +1,5 @@
-.btn-adjust{
-  position: absolute ;
+.btn-adjust {
+  position: absolute;
   top: 1%;
   right: 2%;
   width: $s36;
@@ -13,11 +13,55 @@
   color: $dark;
   z-index: 2048;
 }
-.btn-adjust:hover{
+.btn-adjust:hover {
   background-color: $dark;
   color: $white;
 }
-.btn-adjust:active,.btn-adjust:focus{
+.btn-adjust:active,
+.btn-adjust:focus {
   border: none;
-  outline:none;
+  outline: none;
+}
+
+.btn-mini {
+  width: 50px;
+  height: 50px;
+  background-color: $pink-0;
+  border-radius: 8px;
+  border: none;
+  color: $red-2;
+  outline: none;
+  margin: 0;
+  padding: 0;
+  &:active,
+  &:focus {
+    border: none;
+    outline: none;
+  }
+  &:hover {
+    background: $pink-1;
+    cursor: pointer;
+  }
+}
+
+.btn {
+  border-radius: 8px;
+  font-family: $font-2;
+  font-style: normal;
+  font-weight: 900;
+  font-size: 18px;
+  line-height: 25px;
+  color: $white;
+  &:hover{
+    opacity: 0.8;
+    color: $pastel;
+  }
+}
+.btn-pri{
+  background-color: $red;
+  width: 100%;
+}
+.btn-sec{
+  background-color: $pink-3;
+  width: 100%;
 }

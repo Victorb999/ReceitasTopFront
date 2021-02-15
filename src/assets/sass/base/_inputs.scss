@@ -1,0 +1,32 @@
+.form-text {
+  background: $gray-1;
+  border-radius: 8px;
+  border: none;
+  height: 50px;
+  &:focus,
+  &:active {
+    outline: none;
+    background: darken($gray-1,2%);
+    border: 0.5px solid $pink-1;
+    box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075) !important;
+  }
+}
+.busca {
+  min-width: 30vw;
+  width: auto;
+  max-width: 50vw;
+}
+
+#form-cadastro{
+  .form-text {
+    width: 100%;
+    margin-bottom: $s12;
+    padding-left: $s12;
+  }
+  option[value=""][disabled] {
+    display: none;
+  }
+  option {
+    color: $brown;
+  }
+}

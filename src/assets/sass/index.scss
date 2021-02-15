@@ -2,11 +2,14 @@
 @import 'base/reset';
 @import 'base/texts';
 @import 'base/buttons';
+@import 'base/inputs';
+@import 'base/spacing';
 
 
 @import 'components/navbar';
 @import 'components/home';
 @import 'components/ingrediente';
+@import 'components/cadastroIngrediente';
 
 .all{
   display: flex;

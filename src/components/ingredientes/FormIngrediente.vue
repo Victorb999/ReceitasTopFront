@@ -1,7 +1,15 @@
 <template>
   <div id="form-cadastro">
-    <h1>Oi, aqui vamos cadastrar os ingredientes</h1>
-    <form @submit.prevent="CadastraIngrediente">
+    <h1 v-if="state.update">
+      <i class="far fa-edit"></i> Carregamos o {{ state.item.descricao }} para
+      você atualizar.
+    </h1>
+    <h1 v-else>Oi, aqui vamos cadastrar os ingredientes</h1>
+    <form
+      @submit.prevent="
+        state.update ? UpdateIngrediente() : CadastraIngrediente()
+      "
+    >
       <div class="row">
         <div class="col-md-12">
           <input
@@ -67,23 +75,33 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, reactive } from "vue";
+import { defineComponent, reactive, watch } from "vue";
 import { Ingrediente } from "@/api/interfacesReceita";
 import ApiReceita from "@/api/apiReceita";
 export default defineComponent({
-  Name: "CadastroIngrediente",
+  Name: "FormIngrediente",
+  props: {
+    item: {
+      type: Number,
+      required: false
+    }
+  },
   setup(props, { emit }) {
     interface Cadastro {
       descricao: string;
-      unidade: string;
+      unidade?: string;
       quantidade?: number;
       preco?: number;
+      update: boolean;
+      item: Ingrediente;
     }
     const state = reactive({
       descricao: "",
       unidade: "",
       quantidade: undefined,
-      preco: undefined
+      preco: undefined,
+      update: false,
+      item: {} as Ingrediente
     }) as Cadastro;
 
     function resetaform() {
@@ -91,6 +109,22 @@ export default defineComponent({
       state.unidade = "";
       state.quantidade = undefined;
       state.preco = undefined;
+      state.update = false;
+    }
+
+    async function BuscaIngrediente() {
+      const request = new ApiReceita();
+      const id = props.item == null ? 0 : props.item;
+      if (id > 0) {
+        await request
+          .buscaIngrediente(id)
+          .then(response => {
+            state.item = response;
+          })
+          .catch(err => {
+            console.log(err);
+          });
+      }
     }
 
     async function CadastraIngrediente() {
@@ -103,10 +137,10 @@ export default defineComponent({
       const request = new ApiReceita();
       await request
         .createIngrediente(ingrediente)
-        .then(response => {
+        .then(() => {
           resetaform();
+          alert("Cadastramos esse ingrediente pra você.");
           emit("recarrega", true);
-          console.log(response);
         })
         .catch(err => {
           resetaform();
@@ -114,7 +148,65 @@ export default defineComponent({
         });
     }
 
-    return { state, CadastraIngrediente, resetaform };
+    async function UpdateIngrediente() {
+      state.item.descricao = state.descricao;
+      state.item.quantidade = state.quantidade;
+      state.item.preco = state.preco;
+      state.item.unidade = state.unidade;
+      const request = new ApiReceita();
+      const id = state.item.id == null ? 0 : state.item.id;
+      await request
+        .updateIngrediente(state.item, id)
+        .then(() => {
+          alert("Atualizamos esse ingrediente pra você.");
+          emit("recarrega", true);
+        })
+        .catch(err => {
+          console.log(err);
+        })
+        .finally(() => {
+          resetaform();
+        });
+    }
+
+    if (typeof props.item != "undefined") {
+      BuscaIngrediente();
+    } else {
+      resetaform();
+    }
+
+    watch(
+      () => props.item,
+      () => {
+        if (typeof props.item != "undefined") {
+          BuscaIngrediente();
+        } else {
+          resetaform();
+        }
+        console.log(props.item, state.update);
+      }
+    );
+
+    watch(
+      () => state.item,
+      () => {
+        if (typeof props.item != undefined) {
+          state.descricao = state.item.descricao;
+          state.quantidade = state.item.quantidade;
+          state.preco = state.item.preco;
+          state.unidade = state.item.unidade;
+          state.update = true;
+        }
+      }
+    );
+
+    return {
+      state,
+      CadastraIngrediente,
+      resetaform,
+      BuscaIngrediente,
+      UpdateIngrediente
+    };
   }
 });
 </script>

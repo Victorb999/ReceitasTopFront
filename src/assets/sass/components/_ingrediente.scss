@@ -4,6 +4,7 @@
     margin-top: $s24;
     font-family: $font-2;
     background-color: $pink-0;
+    height: 100%;
     color: $red-2;
     border-radius: 5px;
     padding: $s12;
@@ -55,7 +56,7 @@
 .theme-dark {
   #ingrediente {
     .container-ingrediente {
-      background-color: $vinho;
+      background-color: $pink-dark;
       color: white;
       .title-ingrediente {
         background-color: $red;

@@ -3,10 +3,11 @@
   border-radius: 8px;
   border: none;
   height: 50px;
+  color: $brown;
   &:focus,
   &:active {
     outline: none;
-    background: darken($gray-1,2%);
+    background: darken($gray-1, 2%);
     border: 0.5px solid $pink-1;
     box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075) !important;
   }
@@ -17,7 +18,7 @@
   max-width: 50vw;
 }
 
-#form-cadastro{
+#form-cadastro {
   .form-text {
     width: 100%;
     margin-bottom: $s12;
@@ -28,5 +29,20 @@
   }
   option {
     color: $brown;
+  }
+}
+
+.theme-dark {
+  .form-text {
+    background: $vinho;
+    color: $white;
+  }
+  ::placeholder {
+    color: $pink-0;
+  }
+  #form-cadastro {
+    option {
+      color: $white;
+    }
   }
 }

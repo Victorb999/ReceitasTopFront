@@ -20,15 +20,24 @@
       </small>
     </div>
     <div class="row" v-if="state.cadastro">
-      <cadastro-ingrediente @recarrega="Recarregar" />
+      <div class="col-sm-12 col-md-12 col-lg-8 ">
+        <form-ingrediente @recarrega="Recarregar" :item="state.item" />
+      </div>
+      <div class="col-lg-4">
+        <img src="./../assets/svg/illustration/form.svg" />
+      </div>
     </div>
     <div class="row" v-if="state.erro == ''">
       <div
         v-for="ing in state.ingredientes"
         :key="ing.id"
-        class="col-md-4 col-sm-6"
+        class="col-sm-12 col-md-4 col-lg-2 mb-12"
       >
-        <container-ingrediente :ing="ing" />
+        <container-ingrediente
+          :ing="ing"
+          @recarrega="Recarregar"
+          @update="Update"
+        />
       </div>
     </div>
   </div>
@@ -38,22 +47,24 @@
 import { reactive, defineComponent, onMounted, watch } from "vue";
 import ApiReceita from "@/api/apiReceita";
 import { Ingrediente } from "@/api/interfacesReceita";
-import CadastroIngrediente from "@/components/ingredientes/CadastroIngrediente.vue";
+import FormIngrediente from "@/components/ingredientes/FormIngrediente.vue";
 import ContainerIngrediente from "@/components/ingredientes/ContainerIngrediente.vue";
 
 export default defineComponent({
-  components: { ContainerIngrediente, CadastroIngrediente },
+  components: { ContainerIngrediente, FormIngrediente },
   name: "Ingrediente",
   setup() {
     interface State {
       ingredientes: Array<Ingrediente>;
       ingrediente: string;
+      item?: number;
       erro: string;
       cadastro: boolean;
     }
     const state = reactive({
       ingredientes: [] as Array<Ingrediente>,
       ingrediente: "",
+      item: undefined,
       erro: "",
       cadastro: false
     }) as State;
@@ -93,12 +104,19 @@ export default defineComponent({
     }
 
     function showCadastro() {
+      state.item = undefined;
       state.cadastro = true;
     }
 
     function Recarregar(resp: boolean) {
       if (resp) retornaIngredientes();
     }
+
+    function Update(item: Ingrediente) {
+      state.item = item.id;
+      state.cadastro = true;
+    }
+
     onMounted(() => {
       retornaIngredientes();
     });
@@ -109,7 +127,7 @@ export default defineComponent({
         filtraIgrediente();
       }
     );
-    return { state, filtraIgrediente, showCadastro, Recarregar };
+    return { state, filtraIgrediente, showCadastro, Recarregar, Update };
   }
 });
 </script>

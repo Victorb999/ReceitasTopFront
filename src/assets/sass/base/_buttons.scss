@@ -43,6 +43,22 @@
     cursor: pointer;
   }
 }
+.delete{
+  background-color: transparent;
+  color: $red;
+  float: right;
+  &:hover{
+    background: $red-2;
+  }
+}
+.edit{
+  background-color: transparent;
+  color: $pink-3;
+  float: right;
+  &:hover{
+    background: $red-2;
+  }
+}
 
 .btn {
   border-radius: 8px;
@@ -64,4 +80,15 @@
 .btn-sec{
   background-color: $pink-3;
   width: 100%;
+}
+.theme-dark {
+  .btn-mini{
+    background-color: $red;
+  }
+  .delete,.edit{
+    background: transparent;
+    &:hover{
+      background: $red-2;
+    }
+  }
 }

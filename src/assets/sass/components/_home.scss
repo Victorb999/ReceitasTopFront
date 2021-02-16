@@ -1,23 +1,25 @@
-.home{
-  img{
+.home {
+  img {
     width: 100%;
   }
-  div{
+  div {
     align-self: baseline;
   }
-  h3{
+  h3 {
     margin-top: $s18;
   }
-  h1{
+  h1 {
     font-weight: bold;
     font-size: 3em;
     line-height: 60px;
   }
 }
-@media (max-width: $layout-breakpoint-small){
-  h1{
-    font-weight: bold !important;
-    font-size: 2em !important;
-    line-height: 150% !important;
+@media (max-width: $layout-breakpoint-small) {
+  .home {
+    h1 {
+      font-weight: bold !important;
+      font-size: 2em !important;
+      line-height: 150% !important;
+    }
   }
 }

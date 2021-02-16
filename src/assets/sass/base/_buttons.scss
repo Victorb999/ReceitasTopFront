@@ -92,3 +92,24 @@
     }
   }
 }
+
+@media (max-width: $layout-breakpoint-medium){
+  .btn{
+    margin-top: $s12;
+  }
+}
+@media (max-width: 500px){
+  .btn-mini {
+    width: 25px;
+    height: 25px;
+    i{
+      font-size: 12px;
+    }
+  }
+  .btn-add{
+    vertical-align: middle;
+    align-self: center;
+    margin-right: 0 !important;
+    margin-left: $s24 !important;
+  }
+}

@@ -17,7 +17,7 @@
       <button class="btn-mini edit mr-6" title="editar" @click="updateItem">
         <i class="far fa-edit"></i>
       </button>
-      <button class="btn-mini delete" title="deletar" @click="deleteItem">
+      <button class="btn-mini delete mr-6" title="deletar" @click="deleteItem">
         <i class="far fa-trash-alt"></i>
       </button>
     </div>
@@ -52,6 +52,13 @@ export default defineComponent({
     }
 
     function updateItem() {
+      const el = document.getElementById("app");
+      if (el) {
+        el.scrollIntoView({ behavior: "smooth" });
+        setTimeout(() => {
+          window.scrollBy(0, 40);
+        }, 500);
+      }
       emit("update", props.ing);
     }
 

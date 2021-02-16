@@ -3,11 +3,12 @@
     <h1>Olá, aqui vamos ver os ingredientes.</h1>
     <div class="row">
       <button
-        class="btn-mini ma-12"
-        title="Clique aqui para cadastrar um novo ingrediente"
+        class="btn-mini btn-add ma-12"
+        title="Clique para cadastrar um novo ingrediente."
         @click="showCadastro"
       >
-        <i class="fas fa-plus"></i>
+        <i v-if="!state.cadastro" class="fas fa-plus"></i>
+        <i v-else class="fas fa-minus"></i>
       </button>
       <input
         type="text"
@@ -19,19 +20,21 @@
         {{ state.erro }}
       </small>
     </div>
-    <div class="row" v-if="state.cadastro">
-      <div class="col-sm-12 col-md-12 col-lg-8 ">
-        <form-ingrediente @recarrega="Recarregar" :item="state.item" />
+    <transition name="slide-fade" mode="out-in">
+      <div class="row" v-if="state.cadastro">
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-8 ">
+          <form-ingrediente @recarrega="Recarregar" :item="state.item" />
+        </div>
+        <div class="col-lg-4">
+          <img src="./../assets/svg/illustration/form.svg" />
+        </div>
       </div>
-      <div class="col-lg-4">
-        <img src="./../assets/svg/illustration/form.svg" />
-      </div>
-    </div>
+    </transition>
     <div class="row" v-if="state.erro == ''">
       <div
         v-for="ing in state.ingredientes"
         :key="ing.id"
-        class="col-sm-12 col-md-4 col-lg-2 mb-12"
+        class="col-xs-6 col-sm-6 col-md-4 col-lg-2 mb-12"
       >
         <container-ingrediente
           :ing="ing"
@@ -105,7 +108,7 @@ export default defineComponent({
 
     function showCadastro() {
       state.item = undefined;
-      state.cadastro = true;
+      state.cadastro = !state.cadastro;
     }
 
     function Recarregar(resp: boolean) {

@@ -1,7 +1,17 @@
-body{
+body {
   background: $white;
-  color:$brown;
+  color: $brown;
   font-size: 16px;
   font-family: $font;
   font-weight: normal;
+}
+@media (max-width: 500px) {
+  .col-xs-12 {
+    flex: 0 0 auto;
+    width: 100%;
+  }
+  .col-xs-6 {
+    flex: 0 0 auto;
+    width: 50%;
+  }
 }

@@ -1,5 +1,5 @@
-.sidebar{
-  position:relative;
+.sidebar {
+  position: relative;
   display: block;
   top: 0;
   bottom: 0;
@@ -8,50 +8,50 @@
   min-height: 100vh;
   background: $pink-0;
   padding: $s36;
-  .nav-item{
+  .nav-item {
     margin-top: $s18;
     margin-left: $s36;
   }
-  a{
+  a {
     color: $brown;
     text-decoration: none;
     font-weight: 600;
   }
-  a:hover{
-    color: lighten($brown,15%); 
+  a:hover {
+    color: lighten($brown, 15%);
   }
-  i{
+  i {
     margin-right: $s12;
   }
-  img{
+  img {
     width: 80%;
     margin-left: 10%;
   }
 }
-.mini-side{
+.mini-side {
   padding: $s18 !important;
-  .nav-item{
+  .nav-item {
     margin-left: $s12;
   }
-  i{
+  i {
     margin-right: 0;
   }
-  a{
+  a {
     border-radius: 5px;
     padding: $s6;
   }
-  .logo-link:hover{
-    background: none !important; 
+  .logo-link:hover {
+    background: none !important;
   }
-  a:hover{
-    background: $pink-2; 
+  a:hover {
+    background: $pink-2;
   }
-  img{
+  img {
     width: 40px;
   }
 }
-.danwer{
-  position: absolute ;
+.danwer {
+  position: absolute;
   width: $s36;
   height: $s36;
   vertical-align: middle;
@@ -62,42 +62,52 @@
   background: $white;
   z-index: 2048;
 }
-.danwer-small{
+.danwer-small {
   top: 1%;
   left: 75px;
 }
-.danwer-big{
+.danwer-big {
   top: 1%;
   left: 260px;
 }
-.danwer:hover{
+.danwer:hover {
   background-color: $pink-3;
 }
-.danwer:active,.danwer:focus{
+.danwer:active,
+.danwer:focus {
   border: none;
-  outline:none;
+  outline: none;
 }
 .slide-fade-enter-active {
-  transition: all .3s ease;
+  transition: all 0.3s ease;
 }
 .slide-fade-leave-active {
-  transition: all .3s cubic-bezier(1.0, 0.5, 0.8, 1.0);
+  transition: all 0.3s cubic-bezier(1, 0.5, 0.8, 1);
 }
 .slide-fade-enter, .slide-fade-leave-to
 /* .slide-fade-leave-active below version 2.1.8 */ {
-  transform: translateX(10px);
   opacity: 0;
 }
 
 .theme-dark {
-  .sidebar{
+  .sidebar {
     background-color: $pink-dark;
     color: $pink-0;
-    a{
+    a {
       color: $pink-0;
     }
-    a:hover{
+    a:hover {
       color: $pastel;
     }
+  }
+}
+
+@media (max-width: 500px) {
+  .phoneScreen {
+    display: none;
+  }
+  .danwer-small {
+    top: 1%;
+    left: 1vw;
   }
 }

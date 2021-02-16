@@ -68,3 +68,21 @@
     }    
   }
 }
+
+@media (max-width: 500px)
+{
+  .container-ingrediente {
+    h1{
+      font-size: 1em !important;
+    }
+    .title-ingrediente {
+      font-size: 18px !important;
+      line-height: 36px !important;
+      width: 40px !important;
+      min-height: 40px !important;  
+    }
+  }
+  img{
+    width: 80vw;
+  }
+}

@@ -19,7 +19,11 @@
       </ul>
     </div>
 
-    <div v-else class="sidebar mini-side">
+    <div
+      v-else
+      class="sidebar mini-side"
+      :class="state.phoneScreen ? 'phoneScreen' : ''"
+    >
       <router-link to="/" class="logo-link">
         <img src="./../assets/svg/logo/logo.svg" alt="cupcake" />
       </router-link>
@@ -57,13 +61,16 @@ export default defineComponent({
   setup() {
     interface Nav {
       small: boolean;
+      phoneScreen: boolean;
     }
     const state = reactive({
-      small: false
+      small: false,
+      phoneScreen: false
     }) as Nav;
 
     if (window.innerWidth < 500) {
       state.small = true;
+      state.phoneScreen = true;
     }
 
     return { state };

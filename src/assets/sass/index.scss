@@ -22,3 +22,8 @@
   background-color: $dark;
   color: $white
 }
+@media (max-width: 500px) {
+  .principal{
+    padding: $s48 $s12;
+  }
+}

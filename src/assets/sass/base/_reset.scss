@@ -5,6 +5,7 @@ body {
   font-family: $font;
   font-weight: normal;
 }
+
 @media (max-width: 500px) {
   .col-xs-12 {
     flex: 0 0 auto;

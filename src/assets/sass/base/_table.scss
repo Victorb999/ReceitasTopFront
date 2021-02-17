@@ -28,3 +28,30 @@ table {
     }
   }
 }
+.theme-dark {
+  table{
+    thead {
+      tr {
+        background-color: $red;
+       
+      }
+    }
+    tbody{    
+      td {
+        border-bottom: 1px solid $red;
+      }
+      td:first-child {
+        border-left: 1px solid $red;
+      }
+      td:last-child {
+        border-right: 1px solid $red;
+      }
+    }
+  }
+}
+
+@media (max-width: 500px) {
+  table {
+    font-size: 0.75em;
+  }
+}

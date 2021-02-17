@@ -62,7 +62,10 @@
       </form>
     </div>
   </div>
-  <div class="col-xs-12 col-sm-12 col-md-12 col-lg-4 ">
+  <div
+    v-if="state.ingredientesReceita.length > 0"
+    class="col-xs-12 col-sm-12 col-md-12 col-lg-4"
+  >
     <table>
       <thead>
         <tr>
@@ -84,7 +87,14 @@
               }).format(ing.preco)
             }}
           </td>
-          <td></td>
+          <td>
+            <button
+              class="btn-mini-table btn-delete"
+              @click="removeItem(ing.id)"
+            >
+              <i class="fas fa-times"></i>
+            </button>
+          </td>
         </tr>
       </tbody>
     </table>
@@ -194,7 +204,15 @@ export default defineComponent({
         });
 
         state.precoTotal += valor;
+        resetaform();
       }
+    }
+
+    function removeItem(id: number) {
+      state.ingredientesReceita.splice(
+        state.ingredientesReceita.findIndex(v => v.id === id),
+        1
+      );
     }
 
     if (typeof props.item != "undefined") {
@@ -222,17 +240,20 @@ export default defineComponent({
     watch(
       () => state.ingrediente,
       () => {
-        const ingSelected = state.ingredientes.filter(nome => {
-          return nome.id == state.ingrediente;
-        });
-        state.unidade = ingSelected[0].unidade ? ingSelected[0].unidade : "";
+        if (state.ingrediente > 0) {
+          const ingSelected = state.ingredientes.filter(nome => {
+            return nome.id == state.ingrediente;
+          });
+          state.unidade = ingSelected[0].unidade ? ingSelected[0].unidade : "";
+        }
       }
     );
 
     return {
       state,
       resetaform,
-      AddIngrediente
+      AddIngrediente,
+      removeItem
     };
   }
 });

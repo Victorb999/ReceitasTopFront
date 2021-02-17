@@ -61,6 +61,9 @@
 }
 
 .theme-dark {
+  h1{
+    color: $pink-0;
+  }
   .container-receita {
     .container-ingrediente {
       background-color: $pink-dark;

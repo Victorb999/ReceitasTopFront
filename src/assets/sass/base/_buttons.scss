@@ -85,11 +85,35 @@
   .btn-mini{
     background-color: $red;
   }
+  .btn-mini-table{
+    background-color: $red;
+  }
   .delete,.edit{
     background: transparent;
     &:hover{
       background: $red-2;
     }
+  }
+}
+
+.btn-mini-table {
+  width: 30px;
+  height: 30px;
+  background-color: $pink-0;
+  border-radius: 8px;
+  border: none;
+  color: $red-2;
+  outline: none;
+  margin: 0;
+  padding: 0;
+  &:active,
+  &:focus {
+    border: none;
+    outline: none;
+  }
+  &:hover {
+    background: $pink-1;
+    cursor: pointer;
   }
 }
 

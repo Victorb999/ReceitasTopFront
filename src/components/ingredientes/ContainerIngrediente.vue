@@ -40,15 +40,17 @@ export default defineComponent({
     async function deleteItem() {
       const request = new ApiReceita();
       const id = props.ing.id == null ? 0 : props.ing.id;
-      await request
-        .deleteIngreditente(id)
-        .then(() => {
-          alert("Deletamos esse ingrediente pra você.");
-          emit("recarrega", true);
-        })
-        .catch(err => {
-          console.log(err);
-        });
+      if (confirm("Tem certeza que deseja deletar?")) {
+        await request
+          .deleteIngreditente(id)
+          .then(() => {
+            alert("Deletamos esse ingrediente pra você.");
+            emit("recarrega", true);
+          })
+          .catch(err => {
+            console.log(err);
+          });
+      }
     }
 
     function updateItem() {

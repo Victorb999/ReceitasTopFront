@@ -1,5 +1,5 @@
 <template>
-  <div id="ingrediente">
+  <div id="ingrediente" class="container-receita">
     <h1>Olá, aqui vamos ver os ingredientes.</h1>
     <div class="row">
       <button
@@ -85,7 +85,6 @@ export default defineComponent({
     }
 
     function filtraIgrediente() {
-      console.log(state.ingrediente.length);
       if (state.ingrediente.length >= 3) {
         const filtroIngrediente = state.ingredientes.filter(nome => {
           return (

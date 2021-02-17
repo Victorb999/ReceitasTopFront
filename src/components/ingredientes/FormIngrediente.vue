@@ -41,6 +41,7 @@
           <input
             v-model="state.quantidade"
             type="number"
+            step="any"
             class="form-text"
             placeholder="Quantidade"
             required

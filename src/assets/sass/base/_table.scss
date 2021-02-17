@@ -1,0 +1,30 @@
+table {
+  margin-top: $s12;
+  width: 100%;
+  thead {
+    tr {
+      background-color: $pink-0;
+      th {
+        padding: $s12;
+      }
+      th:first-child {
+        border-top-left-radius: 8px;
+      }
+      th:last-child {
+        border-top-right-radius: 8px;
+      }
+    }
+  }
+  tbody{    
+    td {
+      padding: $s12;
+      border-bottom: 1px solid $pink-0;
+    }
+    td:first-child {
+      border-left: 1px solid $pink-0;
+    }
+    td:last-child {
+      border-right: 1px solid $pink-0;
+    }
+  }
+}

@@ -1,5 +1,12 @@
-#ingrediente {
-  display: block;
+.container-receita {
+  display: block !important;
+  h1 {
+    color: $brown;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 1.2em;
+    line-height: 33px;
+  }
   .container-ingrediente {
     margin-top: $s24;
     font-family: $font-2;
@@ -54,7 +61,7 @@
 }
 
 .theme-dark {
-  #ingrediente {
+  .container-receita {
     .container-ingrediente {
       background-color: $pink-dark;
       color: white;

@@ -1,5 +1,9 @@
 import axios from "axios";
-import { Ingrediente } from "@/api/interfacesReceita";
+import {
+  Ingrediente,
+  Receita,
+  IngredienteReceita
+} from "@/api/interfacesReceita";
 
 class ApiReceita {
   async getIngrediente() {
@@ -51,17 +55,19 @@ class ApiReceita {
   }
 
   async deleteIngreditente(id: number) {
+    let idZ = 0;
     await axios({
       method: "delete",
       baseURL: process.env.VUE_APP_API_ENDPOINT,
       url: `ingrediente/${id}`
     })
       .then(response => {
-        return response;
+        idZ = response.data.id;
       })
       .catch(() => {
         return false;
       });
+    return idZ;
   }
 
   async buscaIngrediente(id: number) {
@@ -78,6 +84,54 @@ class ApiReceita {
         return false;
       });
     return ingrediente;
+  }
+
+  async getReceitas() {
+    let receita = [] as Array<Receita>;
+    await axios({
+      method: "get",
+      baseURL: process.env.VUE_APP_API_ENDPOINT,
+      url: `receita`
+    })
+      .then(response => {
+        receita = response.data.receitas;
+      })
+      .catch(() => {
+        return false;
+      });
+    return receita;
+  }
+
+  async getReceita(id: number) {
+    let receitaIngrediente = {} as IngredienteReceita;
+    await axios({
+      method: "get",
+      baseURL: process.env.VUE_APP_API_ENDPOINT,
+      url: `receita/${id}`
+    })
+      .then(response => {
+        receitaIngrediente = response.data;
+      })
+      .catch(() => {
+        return false;
+      });
+    return receitaIngrediente;
+  }
+
+  async deleteReceita(id: number) {
+    let idZ = 0;
+    await axios({
+      method: "delete",
+      baseURL: process.env.VUE_APP_API_ENDPOINT,
+      url: `receita/${id}`
+    })
+      .then(response => {
+        idZ = response.data.id;
+      })
+      .catch(() => {
+        return false;
+      });
+    return idZ;
   }
 }
 

@@ -90,7 +90,7 @@
           <td>
             <button
               class="btn-mini-table btn-delete"
-              @click="removeItem(ing.id)"
+              @click="removeItem(ing.id, ing.preco)"
             >
               <i class="fas fa-times"></i>
             </button>
@@ -210,11 +210,12 @@ export default defineComponent({
       }
     }
 
-    function removeItem(id: number) {
+    function removeItem(id: number, preco: number) {
       state.ingredientesReceita.splice(
         state.ingredientesReceita.findIndex(v => v.id === id),
         1
       );
+      state.precoTotal -= preco;
     }
 
     if (typeof props.item != "undefined") {

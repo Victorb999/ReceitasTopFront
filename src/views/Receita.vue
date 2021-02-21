@@ -26,14 +26,17 @@
         <form-receita @recarrega="Recarregar" :item="state.item" />
       </div>
     </transition>
-    <div class="row">
+    <div class="row" v-if="state.erro == ''">
       <div
         v-for="rec in state.receitas"
         :key="rec.id"
-        class="col-xs-6 col-sm-6 col-md-4 col-lg-2 mb-12"
+        class="col-xs-6 col-sm-6 col-md-4 col-lg-3 mb-12"
       >
         <container-receita :rec="rec" @recarrega="Recarregar" />
       </div>
+    </div>
+    <div class="row" v-if="state.load">
+      <h4>Aguarde...</h4>
     </div>
   </div>
 </template>
@@ -54,16 +57,19 @@ export default defineComponent({
       erro: string;
       item?: number;
       cadastro: boolean;
+      load: boolean;
     }
     const state = reactive({
       receitas: [] as Receita[],
       receita: "",
       erro: "",
       item: undefined,
-      cadastro: false
+      cadastro: false,
+      load: false
     });
 
     async function retornaReceitas() {
+      state.load = true;
       const request = new ApiReceita();
       await request
         .getReceitas()
@@ -72,6 +78,9 @@ export default defineComponent({
         })
         .catch(err => {
           console.log(err);
+        })
+        .finally(() => {
+          state.load = false;
         });
     }
     function Recarregar(resp: boolean) {

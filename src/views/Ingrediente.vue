@@ -43,6 +43,10 @@
         />
       </div>
     </div>
+
+    <div class="row" v-if="state.load">
+      <h4>Aguarde...</h4>
+    </div>
   </div>
 </template>
 
@@ -63,16 +67,19 @@ export default defineComponent({
       item?: number;
       erro: string;
       cadastro: boolean;
+      load: boolean;
     }
     const state = reactive({
       ingredientes: [] as Array<Ingrediente>,
       ingrediente: "",
       item: undefined,
       erro: "",
-      cadastro: false
+      cadastro: false,
+      load: false
     }) as State;
 
     async function retornaIngredientes() {
+      state.load = true;
       const request = new ApiReceita();
       await request
         .getIngrediente()
@@ -81,6 +88,9 @@ export default defineComponent({
         })
         .catch(err => {
           console.log(err);
+        })
+        .finally(() => {
+          state.load = false;
         });
     }
 

@@ -28,13 +28,13 @@
             placeholder="Unidade"
             required
           >
-            <option value="" disabled selected>Unidade</option>
+            <option value="" disabled selected>Medida</option>
             <option value="KG">Kg</option>
             <option value="MG">mg</option>
             <option value="L">L</option>
             <option value="ML">ml</option>
             <option value="CX">caixa</option>
-            <option value="U">unitário</option>
+            <option value="U">Unidade</option>
           </select>
         </div>
         <div class="col-md-4">
@@ -42,6 +42,7 @@
             v-model="state.quantidade"
             type="number"
             step="any"
+            min="0"
             class="form-text"
             placeholder="Quantidade"
             required
@@ -52,6 +53,7 @@
             v-model="state.preco"
             type="number"
             step="any"
+            min="0"
             class="form-text"
             placeholder="Preço"
             required
@@ -79,6 +81,7 @@
 import { defineComponent, reactive, watch } from "vue";
 import { Ingrediente } from "@/api/interfacesReceita";
 import ApiReceita from "@/api/apiReceita";
+import toast from "@/core/toast";
 export default defineComponent({
   Name: "FormIngrediente",
   props: {
@@ -140,12 +143,12 @@ export default defineComponent({
         .createIngrediente(ingrediente)
         .then(() => {
           resetaform();
-          alert("Cadastramos esse ingrediente pra você.");
+          toast.success("Cadastramos esse ingrediente pra você.", "Ótimo");
           emit("recarrega", true);
         })
         .catch(err => {
           resetaform();
-          console.log(err);
+          toast.error(err, "Ops");
         });
     }
 
@@ -159,11 +162,11 @@ export default defineComponent({
       await request
         .updateIngrediente(state.item, id)
         .then(() => {
-          alert("Atualizamos esse ingrediente pra você.");
+          toast.success("Atualizamos esse ingrediente pra você.", "Ótimo");
           emit("recarrega", true);
         })
         .catch(err => {
-          console.log(err);
+          toast.error(err, "Ops");
         })
         .finally(() => {
           resetaform();
@@ -184,7 +187,7 @@ export default defineComponent({
         } else {
           resetaform();
         }
-        console.log(props.item, state.update);
+        //console.log(props.item, state.update);
       }
     );
 

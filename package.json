@@ -13,6 +13,7 @@
     "bootstrap": "^5.0.0-beta1",
     "core-js": "^3.6.5",
     "jquery": "^3.5.1",
+    "toastr": "^2.1.4",
     "vue": "^3.0.0",
     "vue-router": "^4.0.0-0",
     "vuex": "^4.0.0-0"
@@ -20,6 +21,7 @@
   "devDependencies": {
     "@fortawesome/fontawesome-free": "^5.15.2",
     "@types/jquery": "^3.5.5",
+    "@types/toastr": "^2.1.38",
     "@typescript-eslint/eslint-plugin": "^2.33.0",
     "@typescript-eslint/parser": "^2.33.0",
     "@vue/cli-plugin-babel": "~4.5.0",

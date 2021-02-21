@@ -32,7 +32,7 @@
     "src/**/*.vue",
     "tests/**/*.ts",
     "tests/**/*.tsx"
-  ],
+, "src/core/toast.js"  ],
   "exclude": [
     "node_modules"
   ]

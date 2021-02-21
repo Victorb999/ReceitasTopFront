@@ -11,7 +11,6 @@
               class="form-text"
               placeholder="Descrição"
               maxlength="50"
-              required
             />
           </div>
           <div class="col-md-7">
@@ -34,6 +33,7 @@
             <input
               v-model="state.quantidade"
               type="number"
+              min="0"
               step="any"
               class="form-text"
               placeholder="Quantidade"
@@ -114,6 +114,8 @@
 import { defineComponent, onMounted, reactive, watch } from "vue";
 import { IngredienteReceita, Ingrediente } from "@/api/interfacesReceita";
 import ApiReceita from "@/api/apiReceita";
+import toast from "@/core/toast";
+
 export default defineComponent({
   Name: "FormReceita",
   props: {
@@ -149,7 +151,7 @@ export default defineComponent({
     }) as Cadastro;
 
     function resetaform() {
-      state.descricao = "";
+      //state.descricao = "";
       state.unidade = "";
       state.quantidade = undefined;
       state.preco = undefined;
@@ -165,7 +167,7 @@ export default defineComponent({
           state.ingredientes = response;
         })
         .catch(err => {
-          console.log(err);
+          toast.error(err, "Ops");
         });
     }
 
@@ -179,7 +181,7 @@ export default defineComponent({
             state.item = response;
           })
           .catch(err => {
-            console.log(err);
+            toast.error(err, "Ops");
           });
       }
     }
@@ -233,7 +235,7 @@ export default defineComponent({
         } else {
           resetaform();
         }
-        console.log(props.item, state.update);
+        // console.log(props.item, state.update);
       }
     );
 

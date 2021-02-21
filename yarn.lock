@@ -991,7 +991,7 @@
   dependencies:
     "@types/node" "*"
 
-"@types/jquery@^3.5.5":
+"@types/jquery@*", "@types/jquery@^3.5.5":
   version "3.5.5"
   resolved "https://registry.yarnpkg.com/@types/jquery/-/jquery-3.5.5.tgz#2c63f47c9c8d96693d272f5453602afd8338c903"
   integrity sha512-6RXU9Xzpc6vxNrS6FPPapN1SxSHgQ336WC6Jj/N8q30OiaBZ00l1GBgeP7usjVZPivSkGUfL1z/WW6TX989M+w==
@@ -1070,6 +1070,13 @@
   version "1.0.6"
   resolved "https://registry.yarnpkg.com/@types/tapable/-/tapable-1.0.6.tgz#a9ca4b70a18b270ccb2bc0aaafefd1d486b7ea74"
   integrity sha512-W+bw9ds02rAQaMvaLYxAbJ6cvguW/iJXNT6lTssS1ps6QdrMKttqEAMEG/b5CR8TZl3/L7/lH0ZV5nNR1LXikA==
+
+"@types/toastr@^2.1.38":
+  version "2.1.38"
+  resolved "https://registry.yarnpkg.com/@types/toastr/-/toastr-2.1.38.tgz#ec68b55167cd2041f415467e9809e65bc3be06df"
+  integrity sha512-zKF+vbPVkkwBaMy0lm5NdI117mOoxWOQf2eXOuP/upQ5lHDSfNK/bVoo/x8/IN1hLzO81g+JvTpZQhqr0gKyYg==
+  dependencies:
+    "@types/jquery" "*"
 
 "@types/uglify-js@*":
   version "3.12.0"
@@ -5385,7 +5392,7 @@ jest-worker@^25.4.0:
     merge-stream "^2.0.0"
     supports-color "^7.0.0"
 
-jquery@^3.5.1:
+jquery@>=1.12.0, jquery@^3.5.1:
   version "3.5.1"
   resolved "https://registry.yarnpkg.com/jquery/-/jquery-3.5.1.tgz#d7b4d08e1bfdb86ad2f1a3d039ea17304717abb5"
   integrity sha512-XwIBPqcMn57FxfT+Go5pzySnm4KWkT1Tv7gjrpT1srtf8Weynl6R273VJ5GjkRb51IzMp5nbaPjJXMWeju2MKg==
@@ -8615,6 +8622,13 @@ to-regex@^3.0.1, to-regex@^3.0.2:
     extend-shallow "^3.0.2"
     regex-not "^1.0.2"
     safe-regex "^1.1.0"
+
+toastr@^2.1.4:
+  version "2.1.4"
+  resolved "https://registry.yarnpkg.com/toastr/-/toastr-2.1.4.tgz#8b43be64fb9d0c414871446f2db8e8ca4e95f181"
+  integrity sha1-i0O+ZPudDEFIcURvLbjoyk6V8YE=
+  dependencies:
+    jquery ">=1.12.0"
 
 toidentifier@1.0.0:
   version "1.0.0"

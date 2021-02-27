@@ -118,6 +118,21 @@ class ApiReceita {
     return receitaIngrediente;
   }
 
+  async createReceita(receita: IngredienteReceita) {
+    await axios({
+      method: "post",
+      baseURL: process.env.VUE_APP_API_ENDPOINT,
+      url: `receita`,
+      data: receita
+    })
+      .then(response => {
+        return response;
+      })
+      .catch(() => {
+        return false;
+      });
+  }
+
   async deleteReceita(id: number) {
     let idZ = 0;
     await axios({

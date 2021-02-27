@@ -1,8 +1,10 @@
 <template>
   <div class="container-ingrediente">
-    <div class="title-ingrediente">
-      {{ props.rec.descricao.toUpperCase().charAt(0) }}
-    </div>
+    <router-link :to="`/receita/${props.rec.id}`">
+      <div class="title-ingrediente">
+        {{ props.rec.descricao.toUpperCase().charAt(0) }}
+      </div>
+    </router-link>
     <div class="text-ingrediente">
       <h1>{{ props.rec.descricao }}</h1>
       <p>
@@ -28,6 +30,8 @@
 import { defineComponent, PropType } from "vue";
 import { Receita } from "@/api/interfacesReceita";
 import ApiReceita from "@/api/apiReceita";
+import toast from "@/core/toast";
+
 export default defineComponent({
   Name: "ContainerReceita",
   props: {
@@ -44,11 +48,11 @@ export default defineComponent({
         await request
           .deleteReceita(id)
           .then(() => {
-            alert("Deletamos essa receita pra você.");
+            toast.success("Deletamos essa receita pra você.", "Ótimo");
             emit("recarrega", true);
           })
           .catch(err => {
-            console.log(err);
+            toast.error(err, "Ops");
           });
       }
     }

@@ -27,6 +27,7 @@
 import { PropType, defineComponent } from "vue";
 import { Ingrediente } from "@/api/interfacesReceita";
 import ApiReceita from "@/api/apiReceita";
+import toast from "@/core/toast";
 
 export default defineComponent({
   name: "Ingrediente",
@@ -44,11 +45,11 @@ export default defineComponent({
         await request
           .deleteIngreditente(id)
           .then(() => {
-            alert("Deletamos esse ingrediente pra você.");
+            toast.success("Deletamos esse ingrediente pra você.", "Ótimo");
             emit("recarrega", true);
           })
           .catch(err => {
-            console.log(err);
+            toast.error(err, "Ops");
           });
       }
     }

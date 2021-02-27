@@ -5,6 +5,9 @@ body {
   font-family: $font;
   font-weight: normal;
 }
+a{
+  text-decoration: none;
+}
 
 @media (max-width: 500px) {
   .col-xs-12 {

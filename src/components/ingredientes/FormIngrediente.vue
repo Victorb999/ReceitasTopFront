@@ -126,7 +126,7 @@ export default defineComponent({
             state.item = response;
           })
           .catch(err => {
-            console.log(err);
+            toast.error(err, "Ops");
           });
       }
     }

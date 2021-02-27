@@ -29,7 +29,7 @@
               </option>
             </select>
           </div>
-          <div class="col-md-4">
+          <div class="col-md-3">
             <input
               v-model="state.quantidade"
               type="number"
@@ -40,8 +40,13 @@
               required
             />
           </div>
-          <div class="col-md-1">
-            <span> {{ state.unidade }} </span>
+          <div class="col-md-2">
+            <input
+              v-if="state.unidade"
+              disabled
+              class="form-text"
+              :value="state.unidade"
+            />
           </div>
         </div>
         <div class="row">
@@ -55,7 +60,7 @@
               type="button"
               class="btn btn-sec"
               value="limpar"
-              @click="resetaform()"
+              @click="ResetaForm()"
             />
           </div>
         </div>
@@ -90,7 +95,7 @@
           <td>
             <button
               class="btn-mini-table btn-delete"
-              @click="removeItem(ing.id, ing.preco)"
+              @click="RemoveItem(ing.id, ing.preco)"
             >
               <i class="fas fa-times"></i>
             </button>
@@ -107,6 +112,7 @@
         currency: "BRL"
       }).format(state.precoTotal)
     }}
+    <button class="btn btn-pri" @click="SalvarReceita">Salvar Receita</button>
   </h1>
 </template>
 
@@ -124,7 +130,7 @@ export default defineComponent({
       required: false
     }
   },
-  setup(props) {
+  setup(props, { emit }) {
     interface Cadastro {
       descricao: string;
       quantidade?: number;
@@ -150,7 +156,7 @@ export default defineComponent({
       ingredientesReceita: [] as Ingrediente[]
     }) as Cadastro;
 
-    function resetaform() {
+    function ResetaForm() {
       //state.descricao = "";
       state.unidade = "";
       state.quantidade = undefined;
@@ -206,11 +212,11 @@ export default defineComponent({
         });
 
         state.precoTotal += valor;
-        resetaform();
+        ResetaForm();
       }
     }
 
-    function removeItem(id: number, preco: number) {
+    function RemoveItem(id: number, preco: number) {
       state.ingredientesReceita.splice(
         state.ingredientesReceita.findIndex(v => v.id === id),
         1
@@ -218,10 +224,34 @@ export default defineComponent({
       state.precoTotal -= preco;
     }
 
+    async function SalvarReceita() {
+      const receita: IngredienteReceita = {
+        receita: {
+          descricao: state.descricao
+        },
+        ingredientes: state.ingredientesReceita
+      };
+      const request = new ApiReceita();
+      await request
+        .createReceita(receita)
+        .then(() => {
+          ResetaForm();
+          toast.success("Cadastramos esse ingrediente pra você.", "Ótimo");
+          state.descricao = "";
+          state.ingredientesReceita = [] as Ingrediente[];
+          state.precoTotal = 0;
+          emit("recarrega", true);
+        })
+        .catch(err => {
+          ResetaForm();
+          toast.error(err, "Ops");
+        });
+    }
+
     if (typeof props.item != "undefined") {
       BuscaReceita();
     } else {
-      resetaform();
+      ResetaForm();
     }
 
     onMounted(() => {
@@ -234,7 +264,7 @@ export default defineComponent({
         if (typeof props.item != "undefined") {
           BuscaReceita();
         } else {
-          resetaform();
+          ResetaForm();
         }
         // console.log(props.item, state.update);
       }
@@ -254,9 +284,10 @@ export default defineComponent({
 
     return {
       state,
-      resetaform,
+      ResetaForm,
       AddIngrediente,
-      removeItem
+      RemoveItem,
+      SalvarReceita
     };
   }
 });

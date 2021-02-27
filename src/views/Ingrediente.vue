@@ -45,7 +45,7 @@
     </div>
 
     <div class="row" v-if="state.load">
-      <h4>Aguarde...</h4>
+      <h4>Aguarde, estamos carregando os ingredientes pra você ...</h4>
     </div>
   </div>
 </template>
